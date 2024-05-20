@@ -8,12 +8,12 @@ use num_traits::FromPrimitive;
 fn main() {
     // println!("Sequence A342754!");
 
-    const MAXSIZE: u64 = 100;
+    const MAXSIZE: u64 = 10000;
     let mut n: BigUint = BigUint::from_u64(0).unwrap();
     // let mut a: [usize; 300] = [0; 300];
 
     let mut prime: u64 = 0;
-    // let mut prime_gap: u64 = 0;
+    let mut prime_gap_buffer: u64 = 0;
 
     for m in 1..MAXSIZE {
         let mut k = BigUint::from_u64(2).unwrap();
@@ -54,8 +54,15 @@ fn main() {
         }
         if not_prime == false {
             let prime_gap = m - prime - 1;
+            // prime_gap_buffer = prime_gap;
             prime = m;
-            println!("{gap_value} - {prime_value}", gap_value=prime_gap, prime_value=prime);
+            // println!("{gap_value} - {prime_value}", gap_value=prime_gap, prime_value=prime);
+            if prime_gap > prime_gap_buffer {
+                prime_gap_buffer = prime_gap;
+                // println!("prime gap buffer: {}", prime_gap_buffer);
+                // println!("{},", prime_gap_buffer);
+                println!("{gap_value} - {prime_value}", gap_value=prime_gap, prime_value=prime);
+            }
             
             
 
